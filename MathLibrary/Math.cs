@@ -273,4 +273,57 @@ namespace MathLibrary
 			return result;
 		}
 	}
+
+	public class Colour
+	{
+		public UInt32 colour;
+
+		public Colour()
+		{
+
+		}
+
+		public Colour (byte red, byte green, byte blue, byte alpha)
+		{
+
+		}
+		
+		public void SetRed (byte red)
+		{
+			colour = colour | 0xFF000000;
+			colour = colour & (uint)(red << 24);
+		}
+		public uint GetRed(byte red)
+		{
+			return red;
+		}
+
+		public void SetGreen(byte green)
+		{
+			colour = colour | 0x00FF0000;
+			colour = colour & (uint)(green << 16);
+		}
+		public uint GetGreen(byte green)
+		{
+			return green;
+		}
+		public void SetBlue(byte blue)
+		{
+			colour = colour | 0x0000FF00;
+			colour = colour & (uint)(blue << 8);
+		}
+		public uint GetBlue(byte blue)
+		{
+			return blue;
+		}
+		public void SetAlpha(byte alpha)
+		{
+			colour = colour | 0x000000FF;
+			colour = colour & (uint)(alpha << 0);
+		}
+		public uint GetAlpha(byte alpha)
+		{
+			return alpha;
+		}
+	}
 }
