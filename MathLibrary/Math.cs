@@ -15,7 +15,7 @@ namespace MathLibrary
 		//Operator overloading
 
 		// V = V + V (point translated by a vector)
-		public static Vector2 operator + (Vector2 lhs, Vector2 rhs)
+		public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
 		{
 			Vector2 result;
 			result.x = lhs.x + rhs.x;
@@ -34,7 +34,7 @@ namespace MathLibrary
 			return result;
 		}
 		// V = V x f(vector scale)
-		public static Vector2 operator*(Vector2 lhs, float rhs)
+		public static Vector2 operator *(Vector2 lhs, float rhs)
 		{
 			Vector2 result;
 			result.x = lhs.x * rhs;
@@ -58,7 +58,7 @@ namespace MathLibrary
 		public float Normalise()
 		{
 			float magnitude = Magnitude();
-			if(magnitude != 0)
+			if (magnitude != 0)
 			{
 				x /= magnitude;
 				y /= magnitude;
@@ -66,6 +66,38 @@ namespace MathLibrary
 			}
 			return magnitude;
 		}
+		// f = V.Dot(V )
+		public float Dot(Vector2 rhs)
+		{
+			return ((x * rhs.x) + (y * rhs.y));
+		}
+
+		//public Vector2 GetRightAngle()
+		//{
+		//	Vector2 result;
+		//	result.x = -y;
+		//	result.y = x;
+		//	return result;
+		//}
+		//public static float GetAngleBetween(Vector2 lhs, Vector2 rhs)
+		//{
+		//	lhs.Normalise();
+		//	rhs.Normalise();
+		//	float fDot = lhs.Dot(rhs);
+
+		//	//get angle
+		//	float angle = (float)Math.Acos(fDot);
+
+		//	//check if angle is clockwise or anticlockwise
+		//	Vector2 rightAngle = lhs.GetRightAngle();
+		//	float fRightDot = rhs.Dot(rightAngle);
+		//	if (fRightDot < 0)
+		//		angle = angle * -1.0f;
+
+		//		return angle;
+
+
+		//}
 	}
 	public struct Vector3
 	{
@@ -136,8 +168,22 @@ namespace MathLibrary
 				return magnitude;
 			}
 			return magnitude;
-			
 		}
+		// f = V.Dot(V )
+		public float Dot(Vector3 rhs)
+		{
+			return ((x * rhs.x) + (y * rhs.y) + (z * rhs.z));
+		}
+		// V = V.Cross(V )
+		public Vector3 Cross(Vector3 rhs)
+		{
+			Vector3 result;
+			result.x = (y * rhs.z) - (z * rhs.y);
+			result.y = (z * rhs.x) - (x * rhs.z);
+			result.z = (x * rhs.y) - (y * rhs.x);
+			return result;
+		}
+
 	}
 	public struct Vector4
 	{
@@ -215,6 +261,16 @@ namespace MathLibrary
 			}
 			return magnitude;
 
+		}
+		// V = V.Cross(V )
+		public Vector4 Cross(Vector4 rhs)
+		{
+			Vector4 result;
+			result.x = (y * rhs.z) - (z * rhs.y);
+			result.y = (z * rhs.x) - (x * rhs.z);
+			result.z = (x * rhs.y) - (y * rhs.x);
+			result.w = 0;
+			return result;
 		}
 	}
 }
